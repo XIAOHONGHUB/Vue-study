@@ -1,0 +1,21 @@
+##页面自适应
+<script setup>
+import { ref, onMounted, onUnmounted } from 'vue';
+
+const fontsize = ref(16); // 默认字体大小
+
+function setRootFontSize() {
+  const width = document.body.clientWidth
+  fontsize.value = (width / 750) * 100;
+  document.documentElement.style.fontSize = `${fontsize.value}px`;
+}
+
+onMounted(() => {
+  setRootFontSize();
+  window.addEventListener('resize', setRootFontSize);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', setRootFontSize);
+});
+</script>
